@@ -628,3 +628,10 @@ footer {
         border-bottom: none;
     }
 }
+/* Additional specific media query for very small phones (like 320px wide) */
+@media (max-width: 420px) {
+    .hero h1 {
+        /* Even smaller font size for very narrow screens */
+        font-size: 1.8rem;
+    }
+}
