@@ -2,6 +2,13 @@
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
+        
+        // Close the mobile menu if it's open (for better mobile UX)
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+        }
+
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
             target.scrollIntoView({
@@ -11,6 +18,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// --- MOBILE MENU TOGGLE (NEW CODE) ---
+const burger = document.querySelector('.burger');
+const navLinks = document.querySelector('.nav-links');
+
+if (burger && navLinks) {
+    burger.addEventListener('click', () => {
+        // Toggle the 'active' class on the navigation links
+        navLinks.classList.toggle('active');
+    });
+}
+// ----------------------------------------
+
 
 // Add scroll animation to sections
 const observerOptions = {
