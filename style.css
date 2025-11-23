@@ -35,6 +35,7 @@ nav {
     -webkit-text-fill-color: transparent;
 }
 
+/* Default state for web/desktop */
 .nav-links {
     display: flex;
     gap: 2rem;
@@ -50,6 +51,15 @@ nav {
 
 .nav-links a:hover {
     color: #8a2be2;
+}
+
+/* Hamburger icon - hidden by default on desktop */
+.burger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #8a2be2;
+    z-index: 1001;
 }
 
 /* Hero Section */
@@ -383,14 +393,6 @@ section:nth-child(even) {
 .project-video img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Style for images in project-video */
-.project-video img {
-    width: 100%;
-    height: 100%;
     object-fit: contain;
     display: block;
 }
@@ -573,15 +575,56 @@ footer {
         margin-left: 2rem !important;
     }
 
-    .nav-links {
-        display: none;
-    }
-
     .projects-grid, .cert-grid {
         grid-template-columns: 1fr;
     }
 
     .internship-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* --- MOBILE MENU/HAMBURGER STYLES --- */
+    /* Show the burger icon */
+    .burger {
+        display: block;
+    }
+
+    /* Set up mobile menu layout */
+    .nav-links {
+        /* Position the menu off-screen to the right */
+        position: absolute;
+        top: 100%; /* Below the navbar */
+        right: 0;
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        background: rgba(10, 10, 10, 0.98);
+        border-top: 1px solid rgba(138, 43, 226, 0.5);
+        
+        /* Animation properties */
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        
+        /* Ensure it covers the main content */
+        z-index: 999; 
+        
+        /* Display property to ensure it uses flex properties */
+        display: flex; 
+        padding: 1rem 0;
+    }
+    
+    /* When the menu is active (burger clicked) */
+    .nav-links.active {
+        transform: translateX(0); /* Bring it into view */
+    }
+
+    .nav-links a {
+        padding: 1rem 5%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
     }
 }
